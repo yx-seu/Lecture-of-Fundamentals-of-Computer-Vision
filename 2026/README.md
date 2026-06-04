@@ -7,14 +7,7 @@
 
 This is a **public repository** for the Computer Vision course final project, containing 9 comprehensive sub-projects covering fundamental and advanced topics in computer vision.
 
-<style>
-  .deadline {
-    font-weight: bold;
-    font-size: 1.5rem;   /* 或 24px、larger 等 */
-    color: red;
-  }
-</style>
-<span class="deadline">Submission Deadline: 12:00pm UTC+8, June 19,2026</span>
+<span style="color: red; font-weight: bold; font-size: 1.2em;">Submission Deadline: 12:00pm UTC+8, June 19, 2026</span>
 
 ## 🎯 Project Goals
 
