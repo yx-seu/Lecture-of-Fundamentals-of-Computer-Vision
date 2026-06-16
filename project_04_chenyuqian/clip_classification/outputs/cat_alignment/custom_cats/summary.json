@@ -1,0 +1,11 @@
+{
+  "group": "custom_cats",
+  "image_dir": "data/custom_cats",
+  "status": "ok",
+  "image_count": 4,
+  "cifar_cat_top1_count": 4,
+  "cifar_cat_top1_rate": 1.0,
+  "fine_grained_prediction_counts": {
+    "a photo of a domestic cat.": 4
+  }
+}

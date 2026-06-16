@@ -1,0 +1,8 @@
+CLIP cat latent-space semantic alignment analysis
+model_name=openai/clip-vit-base-patch32
+No training, no fine-tuning, CIFAR-10 train split is not used.
+encoded_cifar_test_images=10000
+image_feature_norm_min=1.000000, max=1.000000
+cat_text_feature_norm=1.000000
+fine_prompt_norm_min=1.000000, max=1.000000
+misleading_prompt_norm_min=1.000000, max=1.000000
