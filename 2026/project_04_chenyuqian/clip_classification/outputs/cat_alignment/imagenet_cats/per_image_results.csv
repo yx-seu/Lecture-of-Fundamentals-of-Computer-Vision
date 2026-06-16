@@ -1,0 +1,5 @@
+path,cifar_prediction,cat_rank_among_cifar10,cat_similarity,dog_similarity,cat_dog_margin,fine_grained_prediction,fine_grained_similarity
+data\imagenet_cats\egyptian_mau_cat.jpg,cat,1,0.293903,0.226026,0.067876,a photo of a tabby cat.,0.300665
+data\imagenet_cats\persian_cat.jpg,cat,1,0.285568,0.236841,0.048726,a photo of a Persian cat.,0.289429
+data\imagenet_cats\siamese_cat.jpg,cat,1,0.258310,0.202091,0.056219,a photo of a Siamese cat.,0.293522
+data\imagenet_cats\tabby_cat.jpg,cat,1,0.284749,0.221521,0.063229,a photo of a tabby cat.,0.312120
