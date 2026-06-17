@@ -1,0 +1,15 @@
+numpy>=1.26.0
+pandas>=2.2.0
+pillow>=10.0.0
+opencv-python>=4.9.0
+matplotlib>=3.8.0
+ultralytics>=8.3.0
+requests>=2.31.0
+tqdm>=4.66.0
+pyyaml>=6.0.0
+notebook>=7.0.0
+ipykernel>=6.0.0
+
+# Install PyTorch with the CUDA index shown in README/setup_windows_core.ps1.
+# Install SAM 2 with:
+# pip install https://github.com/facebookresearch/sam2/archive/refs/heads/main.zip

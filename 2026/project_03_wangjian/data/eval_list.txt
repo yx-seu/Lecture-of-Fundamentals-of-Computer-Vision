@@ -1,0 +1,5 @@
+TODO: replace these names with the selected 20 evaluation images from the full dataset.
+example:
+desktop_0001.jpg
+desktop_0006.jpg
+desktop_0012.jpg

@@ -1,0 +1,23 @@
+Dataset name:
+Desktop100 multi-class object segmentation dataset for SAM 2 automatic annotation
+
+Target classes:
+cup, bottle, bowl, book, cell phone
+
+Dataset size:
+100 images generated from Ultralytics COCO128-seg by filtering the five target classes and applying deterministic augmentations.
+
+Storage policy:
+The generated full dataset is stored locally under data/desktop100 and is ignored by Git. Do not commit it to GitHub.
+
+Dataset source:
+Ultralytics COCO128-seg asset: https://ultralytics.com/assets/coco128-seg.zip
+
+Reproduction:
+Run src/prepare_desktop100_from_coco128.py after downloading/extracting COCO128-seg.
+
+Preprocessing:
+Horizontal flip, brightness increase, and brightness decrease are used to expand the target-class subset to 100 images while transforming segmentation polygons consistently.
+
+Manual evaluation:
+The original COCO segmentation labels are treated as human-annotated ground truth for reproducible evaluation. The generated file is data/desktop100/ground_truth_coco.json.
