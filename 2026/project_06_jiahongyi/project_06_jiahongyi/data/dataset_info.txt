@@ -1,0 +1,79 @@
+================================================================================
+Dataset Information — TEM Image Object Detection
+================================================================================
+
+Dataset Overview
+----------------
+This project uses a proprietary dataset of TEM (Transmission Electron Microscopy)
+images of integrated circuit samples. The dataset contains grayscale images
+annotated for 5 object classes.
+
+Dataset Statistics
+------------------
+- Total images: 67 TEM images
+- Image format: Grayscale JPEG
+- Image resolution: ~1024×1024 pixels (varies slightly)
+- Annotation format: YOLO (class_id x_center y_center width height, normalized)
+
+Data Split
+----------
+- Train: ~55 images (82%)
+- Validation: ~14 images (21%)
+- Test: ~10 images (15%)
+Note: Exact counts may vary based on the final dataset configuration.
+
+Classes (5)
+-----------
+0 - manipulator       : The manipulator probe tip visible in TEM
+1 - sample            : The sample/lamella being prepared
+2 - copper_screen_top : Upper copper grid structure
+3 - copper_screen_side: Side copper grid structure
+4 - deposition        : Deposited material region
+
+Preprocessing Pipeline
+---------------------
+Before YOLO training, images undergo up to 3 preprocessing stages:
+
+Stage 1 — CLAHE (Contrast Limited Adaptive Histogram Equalization):
+  - clipLimit=2.0, tileGridSize=(8,8), grayscale
+  - Improves local contrast of TEM imagery
+
+Stage 2 — DnCNN (Denoising Convolutional Neural Network):
+  - 17-layer CNN with residual learning
+  - Pre-trained on sigma=25 Gaussian noise
+  - Removes noise while preserving structural details
+
+Stage 3 — SwinIR (Swin Transformer Image Restoration):
+  - 6-block Swin Transformer architecture
+  - Pre-trained for grayscale denoising (noise=15)
+  - Further enhances image quality
+
+Data Availability
+-----------------
+Due to the proprietary nature of the TEM images (laboratory data from integrated
+circuit manufacturing research), the full dataset is not publicly distributed.
+
+For access to the dataset, please contact the project author through the
+course group chat.
+
+Sample Test Images
+------------------
+3 representative test examples with their full preprocessing chain outputs
+are included in data/test_examples/:
+  - 001_00049_raw.jpg → _clahe.jpg → _dncnn.jpg → _swinir.jpg
+  - 001_00096_raw.jpg → _clahe.jpg → _dncnn.jpg → _swinir.jpg
+  - 003_00016_raw.jpg → _clahe.jpg → _dncnn.jpg → _swinir.jpg
+
+These samples demonstrate the complete image enhancement pipeline and can be
+used for testing the inference scripts.
+
+Dataset Configuration Files
+---------------------------
+The following YOLO dataset configuration files were used for training:
+  - tem_clahe.yaml              : Training on CLAHE images (train7)
+  - tem_clahe_dncnn.yaml        : Training on CLAHE+DnCNN images (train8)
+  - tem_clahe_dncnn_swinir.yaml : Training on CLAHE+DnCNN+SwinIR images (train9)
+
+These YAML files specify the dataset paths and class names following the
+Ultralytics YOLO format.
+================================================================================

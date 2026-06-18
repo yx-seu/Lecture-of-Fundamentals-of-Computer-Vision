@@ -1,0 +1,24 @@
+# Python dependencies for the TEM image processing and YOLOv11 detection pipeline
+# Install: pip install -r requirements.txt
+
+# Core image processing
+opencv-python>=4.8.0
+Pillow>=10.0.0
+numpy>=1.24.0
+
+# Deep learning
+torch>=2.0.0
+torchvision>=0.15.0
+
+# YOLOv11 object detection
+ultralytics>=8.2.0
+
+# Model conversion (for .mat to .pth)
+h5py>=3.9.0
+
+# Jupyter notebook demo
+jupyter>=1.0.0
+matplotlib>=3.7.0
+
+# Optional: for data handling
+pyyaml>=6.0
