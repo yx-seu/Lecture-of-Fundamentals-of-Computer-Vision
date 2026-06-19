@@ -89,6 +89,31 @@ cd <repo-root>
 pip install -r src/requirements.txt
 ```
 
+### Checkpoint Setup
+
+The trained model checkpoint (~20 MB) is distributed separately via email /
+cloud drive. After receiving `vit_imagenette10_best.pt`, place it in an
+`outputs_v3/` directory at the project root:
+
+```
+project_01_wangzhe/
+├── outputs_v3/                  <-- create this directory
+│   └── vit_imagenette10_best.pt  <-- put the checkpoint here
+├── src/
+│   └── ...
+```
+
+Alternatively, pass an explicit path when running inference:
+
+```bash
+python src/main.py --checkpoint /path/to/vit_imagenette10_best.pt
+python src/infer.py --image ... --checkpoint /path/to/vit_imagenette10_best.pt
+```
+
+The Jupyter notebook `demos/inference_demo.ipynb` also looks for the checkpoint
+at `outputs_v3/vit_imagenette10_best.pt` by default; update the
+`CHECKPOINT_PATH` variable in Cell 4 if your checkpoint is elsewhere.
+
 **Dependencies:** PyTorch, torchvision, matplotlib, numpy, Pillow, jupyter.
 
 ## Dataset and Preprocessing
