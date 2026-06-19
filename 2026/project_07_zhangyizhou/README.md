@@ -2,6 +2,8 @@
 
 Real-time MNIST handwritten digit recognition on Alinx AX7010 (Zynq-7010, xc7z010clg400-1) using HLS-generated hardware accelerator.
 
+To see the result, please open [demo report](.\DEMO_REPORT.md).
+
 ## Architecture
 
 ```
@@ -126,6 +128,8 @@ the_ROM_image:
 bootgen -image boot.bif -arch zynq -process_bitstream bin -w -o BOOT.bin
 ```
 
+*The BOOT.bin is all ready under repo for use.*
+
 ### 6. Deploy
 
 Copy `BOOT.bin` to a FAT32-formatted SD card. Insert into AX7010. Set J13 jumper to the left two pins (SD boot). Connect UART (115200 baud, 8N1). Power on.
@@ -156,12 +160,9 @@ Accuracy: 85/100 = 85%
 - **in_image at 0x400, out_scores at 0x10**: confirmed from HLS-generated hardware register map header
 - **int8 quantization**: Q5.3 activations, Q0.7 weights; verified bit-accurate by C/RTL co-simulation (3/3 PASS)
 
-## Test Results
+## Demo
 
-- HLS C simulation: 3/3 PASS
-- HLS C/RTL co-simulation: 3/3 PASS (bit-accurate to C model)
-- Hardware inference latency: ~4.2ms per image at 100 MHz
-- Post-implementation timing: all user constraints met
+*See [demo report](.\DEMO_REPORT.md) for more information.*
 
 ## References
 
