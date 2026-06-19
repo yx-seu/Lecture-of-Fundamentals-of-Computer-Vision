@@ -76,11 +76,11 @@ ARM Cortex-A9 通过 AXI4-Lite 总线直接读写 LeNet-5 IP 的寄存器。图�
 
 ### 开发板运行照片
 
-./assets/fpga.jpg
+![fpga](./assets/fpga.jpg)
 
 ### 串口终端输出
 
-./assets/serial_output.png
+![output](./assets/serial_output.png)
 
 典型输出示例:
 ```
