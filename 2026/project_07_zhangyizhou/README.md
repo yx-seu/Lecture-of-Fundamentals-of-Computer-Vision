@@ -2,7 +2,7 @@
 
 Real-time MNIST handwritten digit recognition on Alinx AX7010 (Zynq-7010, xc7z010clg400-1) using HLS-generated hardware accelerator.
 
-To see the result, please open [demo report](.\DEMO_REPORT.md).
+To see the result, please open [demo report](./DEMO_REPORT.md).
 
 ## Architecture
 
