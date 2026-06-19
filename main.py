@@ -138,8 +138,8 @@ def run_cli_inference(args):
     """Run sample inference in CLI mode (no Web UI)."""
     import torch
     from PIL import Image
-    from pipeline.inference import ControlNetInference
-    from pipeline.scenarios import ScenarioPipeline
+    from src.pipeline.inference import ControlNetInference
+    from src.pipeline.scenarios import ScenarioPipeline
 
     MODELS_DIR = os.path.join(PROJECT_ROOT, "models")
     SD_PATH = os.path.join(MODELS_DIR, "stable-diffusion-v1-5")
@@ -264,7 +264,7 @@ def main():
     print_banner()
 
     # Launch Gradio UI
-    from ui.app import create_ui, launch_ui
+    from src.ui.app import create_ui, launch_ui
 
     logger.info(f"Starting Web UI: http://{args.host}:{args.port}")
     if args.share:

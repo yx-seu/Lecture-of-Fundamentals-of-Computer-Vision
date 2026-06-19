@@ -3,7 +3,7 @@
 ## Model Weights
 
 ### Stable Diffusion 1.5
-- **Source**: [runwayml/stable-diffusion-v1-5](https://huggingface.co/runwayml/stable-diffusion-v1-5)
+- **Source**: [runwayml/stable-diffusion-v1-5](https://hf-mirror.com/stable-diffusion-v1-5/stable-diffusion-v1-5)
 - **License**: CreativeML Open RAIL-M License
 - **Citation**:
   ```bibtex
@@ -18,7 +18,7 @@
   ```
 
 ### ControlNet
-- **Source**: [lllyasviel/ControlNet-v1-1](https://huggingface.co/lllyasviel)
+- **Source**: [lllyasviel/ControlNet-v1-1](https://hf-mirror.com/lllyasviel/models)
 - **Models used**: control_v11p_sd15_canny, control_v11f1p_sd15_depth, control_v11p_sd15_lineart, control_v11p_sd15_scribble, control_v11p_sd15_openpose, control_v11p_sd15_lineart_anime
 - **License**: OpenRAIL License
 - **Citation**:

@@ -17,6 +17,18 @@ import logging
 import traceback
 from typing import Optional, List, Dict
 
+# Patch gradio_client boolean JSON schema bug (must run before `import gradio`)
+try:
+    from gradio_client import utils as gcu
+    _orig_js2pt = gcu._json_schema_to_python_type
+    def _patched_js2pt(schema, defs):
+        if isinstance(schema, bool):
+            return "Any" if schema else "None"
+        return _orig_js2pt(schema, defs)
+    gcu._json_schema_to_python_type = _patched_js2pt
+except Exception:
+    pass
+
 import gradio as gr
 import torch
 from PIL import Image
@@ -24,10 +36,10 @@ from PIL import Image
 # Patch applied in main.py before all imports
 
 # Add project root to path
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
-from pipeline.inference import ControlNetInference
-from pipeline.scenarios import ScenarioPipeline, Scenario
+from src.pipeline.inference import ControlNetInference
+from src.pipeline.scenarios import ScenarioPipeline, Scenario
 
 logger = logging.getLogger(__name__)
 
@@ -35,7 +47,7 @@ logger = logging.getLogger(__name__)
 #  Constants
 # ============================================================
 
-PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 MODELS_DIR = os.path.join(PROJECT_ROOT, "models")
 SD_MODEL_PATH = os.path.join(MODELS_DIR, "stable-diffusion-v1-5")
 

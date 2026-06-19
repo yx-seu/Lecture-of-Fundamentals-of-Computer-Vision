@@ -16,6 +16,8 @@ This project implements a **controllable image generation system** based on **St
 | 3 | 🌸 **Photo-to-Anime** | AnimeLineart + OpenPose + Depth (triple injection) | Input real person/scene photo → anime-style illustration |
 | 4 | 📷 **Old Photo Restoration** | Canny + Depth (dual injection) | Input damaged vintage photo → restored, enhanced photograph |
 
+However, the actual results we achieved are not satisfactory, and the generated images still contain numerous flaws.
+
 The system is built entirely on the **Diffusers** official API, wrapped in a modular pipeline that supports:
 - **Full parameter control**: sampling steps, CFG scale, ControlNet conditioning weights, seed, scheduler selection
 - **Multi-ControlNet injection**: simultaneous use of 2–3 ControlNets with independent weights
@@ -92,7 +94,7 @@ The goal is to demonstrate a production-ready controllable image generation pipe
 
 1. **Custom OpenCV preprocessing** instead of `controlnet_aux`: The `controlnet_aux` package was incompatible with the installed `mediapipe` version. All 7 preprocessors are implemented using OpenCV and MediaPipe directly, with the same algorithmic quality.
 
-2. **DepthAnything integration**: The state-of-the-art DepthAnything V1 model (ViT-Small backbone, DINOv2 encoder) is loaded for high-quality depth estimation. The relative path issue with `./dinov2` was resolved by temporarily switching the working directory during model loading.
+2. **DepthAnything integration**: DepthAnything V1 model (ViT-Small backbone, DINOv2 encoder) is loaded for high-quality depth estimation. The relative path issue with `./dinov2` was resolved by temporarily switching the working directory during model loading.
 
 3. **Lazy model loading**: Preprocessors that require heavy models (DepthAnything, MediaPipe Pose/Face) use lazy initialization — models load on first use, not at import time, preventing unnecessary GPU memory consumption.
 
@@ -106,7 +108,7 @@ The goal is to demonstrate a production-ready controllable image generation pipe
 | **Lineart** | Background correction + Otsu binarization + skeleton extraction | Handles scanned lineart with uneven illumination, broken lines, noise |
 | **AnimeLineart** | Bilateral filter + adaptive thresholding + skeleton extraction | Extracts clean anime-style lineart from photos, removes skin texture |
 | **Scribble** | CLAHE + adaptive thresholding + connected component filtering | Cleans up doodles: removes eraser marks, stray lines, background texture |
-| **Depth** | DepthAnything V1 (DINOv2 ViT-Small encoder) | State-of-the-art monocular depth estimation; falls back to multi-cue intensity analysis |
+| **Depth** | DepthAnything V1 (DINOv2 ViT-Small encoder) |  monocular depth estimation; falls back to multi-cue intensity analysis |
 | **OpenPose** | MediaPipe PoseLandmarker + FaceLandmarker | Generates ControlNet-compatible skeleton maps with 33 body keypoints + face mesh |
 | **Identity** | Pass-through | No preprocessing, passes the image as-is |
 
@@ -116,7 +118,7 @@ The goal is to demonstrate a production-ready controllable image generation pipe
 
 ### Prerequisites
 
-- **GPU**: NVIDIA GPU with ≥8 GB VRAM (tested on RTX 4060 Laptop)
+- **GPU**: NVIDIA GPU with ≥6 GB VRAM (tested on RTX 4060 and RTX 3050Laptop)
 - **CUDA**: 11.8 (compatible with PyTorch 2.0.1)
 - **Python**: 3.10
 - **Disk**: ~10 GB for models
@@ -125,7 +127,7 @@ The goal is to demonstrate a production-ready controllable image generation pipe
 
 ```bash
 git clone <repository-url>
-cd SD_ControlNet_Project
+cd sd_project
 
 # Create conda environment
 conda create -n sd_project python=3.10 -y
@@ -140,7 +142,7 @@ pip install -r requirements.txt
 
 ### Step 2: Download Models
 
-The following models must be placed in the `models/` directory. Use the provided download script or manually download from HuggingFace / official sources:
+The following models must be placed in the `models/` directory. Manually download from HuggingFace / official sources:
 
 ```bash
 models/
@@ -170,17 +172,26 @@ cv_preprocess/models/
 ```
 
 **Model Sources** (see `data/dataset_info.txt` for detailed links):
-- SD 1.5: [runwayml/stable-diffusion-v1-5](https://huggingface.co/runwayml/stable-diffusion-v1-5)
-- ControlNet: [lllyasviel/ControlNet-v1-1](https://huggingface.co/lllyasviel/control_v11p_sd15_canny)
-- DepthAnything: [LiheYoung/Depth-Anything](https://huggingface.co/spaces/LiheYoung/Depth-Anything)
-- DINOv2: Included in `cv_preprocess/dinov2/`
+- SD 1.5: [runwayml/stable-diffusion-v1-5](https://hf-mirror.com/stable-diffusion-v1-5/stable-diffusion-v1-5)
+- ControlNet: [lllyasviel/models](https://hf-mirror.com/lllyasviel/models)
+- DepthAnything: [LiheYoung/Depth-Anything](https://github.com/LiheYoung/Depth-Anything/tree/main/depth_anything)
+- DINOv2: [facebookresearch/dinov2](https://github.com/facebookresearch/dinov2)
 - MediaPipe: Downloaded automatically by the `mediapipe` package
+
+we download zhese models manually from the sites
 
 ### Step 3: Verify Installation
 
 ```bash
-python test_pipelines.py
+python src/test_pipelines.py
 # Expected: All 4 scenarios pass with reasonable output images
+```
+
+Or run the CLI demo:
+
+```bash
+python main.py --cli --all
+# Expected: 4 output images saved to outputs/
 ```
 
 ---
@@ -206,7 +217,8 @@ python main.py --share            # Generate public shareable link
 ### Python API
 
 ```python
-from pipeline import ControlNetInference, ScenarioPipeline
+import sys; sys.path.insert(0, ".")  # ensure project root in path
+from src.pipeline import ControlNetInference, ScenarioPipeline
 
 # Initialize
 engine = ControlNetInference(
@@ -379,6 +391,8 @@ Each scenario produces a progressive visualization showing the full pipeline:
 6. **xFormers**: Installing xFormers would further reduce memory usage by ~20%.
 
 ---
+When we selected our topic, we originally expected to achieve excellent results. However, when we started the practical processing, we found that the quality of the generated images varied greatly. For one thing, we were constrained by limited time and could not conduct sufficient debugging to attain better outcomes. For another, SD1.5, the model this project relies on, was released back in 2022. Unsurprisingly, image generation performance of models from that period was far from ideal. Restricted by our computer hardware specifications, we are unable to run more advanced SD models on our devices, which explains why we have only reached the current standard.
+It should be noted that due to scheduling and other constraints, a large portion of our project work was completed with AI assistance, mainly including UI construction and document writing. We also leveraged AI to optimize other parts of the project.
 
 ## 📚 References
 
@@ -391,48 +405,56 @@ See `references.md` for complete third-party code citations and attributions.
 ```
 SD_ControlNet_Project/
 ├── README.md                    # This documentation
-├── references.md                # Third-party citations
-├── requirements.txt             # Python dependencies
-├── main.py                      # Entry point (Web UI + CLI)
-├── test_pipelines.py            # Comprehensive test suite
-├── generate_results.py          # Results generation script
-├── pipeline/                    # Core source code
+├── references.md                # Third-party code citations (BibTeX)
+├── requirements.txt             # Python dependencies (root copy)
+├── main.py                      # Entry point (Web UI + CLI inference)
+│
+├── src/                         # ── Source code ──────────────
 │   ├── __init__.py
-│   ├── inference.py             # ControlNetInference engine
-│   ├── preprocessors.py         # 7 preprocessor classes
-│   └── scenarios.py             # 4 scenario pipelines
-├── ui/                          # Gradio interface
-│   ├── __init__.py
-│   └── app.py                   # Web UI definition
-├── cv_preprocess/               # Original preprocessing (OpenCV)
-│   ├── basic_preprocess.py
-│   ├── coloring_preprocess.py
-│   ├── scribble_process.py
-│   ├── anime_preprocess.py
-│   ├── depth_preprocess.py
-│   ├── prepairold_preprocess.py
-│   ├── depth_anything/          # DepthAnything V1 source
-│   ├── dinov2/                  # DINOv2 backbone
-│   └── models/                  # DepthAnything + MediaPipe checkpoints
-├── models/                      # SD + ControlNet models
-│   ├── stable-diffusion-v1-5/
-│   ├── control-canny/
-│   ├── control-depth/
-│   ├── control-lineart/
-│   ├── control-scribble/
-│   ├── control-openpose/
-│   └── control-animelineart/
-├── data/
-│   ├── test_examples/           # Test input images
+│   ├── requirements.txt         # Python dependencies
+│   ├── test_pipelines.py        # Comprehensive test suite (all 4 scenarios)
+│   ├── generate_results.py      # Reproducible results generation
+│   ├── pipeline/                # Core pipeline
+│   │   ├── __init__.py
+│   │   ├── inference.py         # ControlNetInference engine
+│   │   ├── preprocessors.py     # 7 preprocessor classes
+│   │   └── scenarios.py         # 4 scenario pipelines
+│   └── ui/                      # Gradio interface
+│       ├── __init__.py
+│       └── app.py               # Web UI definition
+│
+├── data/                        # ── Data ────────────────────
+│   ├── test_examples/           # 4 test input images
 │   └── dataset_info.txt         # Model download links
-├── results/
-│   ├── figures/                 # Generated visualizations
+│
+├── results/                     # ── Results ─────────────────
+│   ├── figures/                 # 21 progressive visualization images
+│   │   ├── lineart_coloring_*   # Scenario 1: input → controls → output → composite
+│   │   ├── sketch_to_realistic_*# Scenario 2
+│   │   ├── photo_to_anime_*     # Scenario 3
+│   │   ├── old_photo_restore_*  # Scenario 4
+│   │   └── run_info.txt         # Hardware/software metadata
 │   └── tables/
-├── demos/                       # Jupyter notebook demo
-│   └── demo.ipynb
-├── outputs/                     # Temporary outputs
-├── experiments/                 # Experimental scripts
-└── docs/                        # Additional documentation
+│
+├── demos/                       # ── Demo ────────────────────
+│   └── demo.ipynb               # Jupyter notebook (28 cells, 4 scenarios + ablation)
+│
+├── cv_preprocess/               # ── Third-party dependencies
+│   ├── depth_anything/          # DepthAnything V1 source (used by DepthPreprocessor)
+│   ├── dinov2/                  # DINOv2 backbone (used by depth_anything)
+│   └── models/                  # DepthAnything + MediaPipe checkpoints
+│
+├── models/                      # ── Pretrained weights (download separately)
+│   ├── stable-diffusion-v1-5/   # SD 1.5 base model
+│   ├── control-canny/           # ControlNet: Canny edge
+│   ├── control-depth/           # ControlNet: Depth map
+│   ├── control-lineart/         # ControlNet: Lineart
+│   ├── control-scribble/        # ControlNet: Scribble
+│   ├── control-openpose/        # ControlNet: OpenPose skeleton
+│   └── control-animelineart/    # ControlNet: Anime Lineart
+│
+├── outputs/                     # Generated output images
+
 ```
 
 ---

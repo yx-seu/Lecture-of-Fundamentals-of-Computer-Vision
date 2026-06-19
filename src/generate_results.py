@@ -3,16 +3,16 @@ Generate test images, run all 4 scenarios, and produce progressive visualization
 Outputs go to data/test_examples/ and results/figures/.
 """
 import sys, os
-sys.path.insert(0, ".")
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
 import torch
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
-from pipeline.inference import ControlNetInference
-from pipeline.scenarios import ScenarioPipeline
-from pipeline.preprocessors import PreprocessorRegistry
+from src.pipeline.inference import ControlNetInference
+from src.pipeline.scenarios import ScenarioPipeline
+from src.pipeline.preprocessors import PreprocessorRegistry
 
-MODELS_DIR = "models"
+MODELS_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "models")
 SD_PATH = os.path.join(MODELS_DIR, "stable-diffusion-v1-5")
 DATA_DIR = "data/test_examples"
 RESULTS_DIR = "results/figures"

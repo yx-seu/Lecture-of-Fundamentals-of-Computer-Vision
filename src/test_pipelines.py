@@ -6,18 +6,17 @@ import sys
 import os
 import traceback
 
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 import torch
 import numpy as np
 from PIL import Image
-from pipeline.inference import ControlNetInference
-from pipeline.scenarios import ScenarioPipeline
-from pipeline.preprocessors import PreprocessorRegistry
+from src.pipeline.inference import ControlNetInference
+from src.pipeline.scenarios import ScenarioPipeline
 
-MODELS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models")
+MODELS_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "models")
 SD_PATH = os.path.join(MODELS_DIR, "stable-diffusion-v1-5")
-OUTPUT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "outputs")
+OUTPUT_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "outputs")
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 # Create a test image with some visual structure

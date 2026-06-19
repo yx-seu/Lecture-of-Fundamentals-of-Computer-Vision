@@ -292,8 +292,9 @@ class DepthPreprocessor:
             import torch.nn.functional as F
 
             # Add cv_preprocess to path so depth_anything module is importable
+            # __file__ = src/pipeline/preprocessors.py → need to go up 3 levels to project root
             cv_preprocess_dir = os.path.join(
-                os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))),
                 "cv_preprocess"
             )
             if cv_preprocess_dir not in sys.path:
