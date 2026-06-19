@@ -1,0 +1,10 @@
+from scribble_process import sketch_generation_preprocess
+from prepairold_preprocess import old_photo_restoration_preprocess
+from coloring_preprocess import lineart_coloring_preprocess
+from anime_preprocess import preprocess_all
+
+INPUT_IMAGE="1234.jpg"
+sketch_generation_preprocess(INPUT_IMAGE)
+lineart_coloring_preprocess(INPUT_IMAGE)
+old_photo_restoration_preprocess(INPUT_IMAGE)
+preprocess_all(INPUT_IMAGE)
