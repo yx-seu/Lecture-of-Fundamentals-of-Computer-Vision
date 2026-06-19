@@ -162,7 +162,7 @@ Accuracy: 85/100 = 85%
 
 ## Demo
 
-*See [demo report](.\DEMO_REPORT.md) for more information.*
+*See [demo report](./DEMO_REPORT.md) for more information.*
 
 ## References
 
