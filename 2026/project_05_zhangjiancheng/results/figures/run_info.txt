@@ -1,0 +1,6 @@
+GPU: NVIDIA GeForce RTX 4060 Laptop GPU
+VRAM: 8.0 GB
+Base Model: Stable Diffusion 1.5
+ControlNets: Lineart, Canny, Scribble, AnimeLineart, OpenPose, Depth
+Framework: diffusers 2.0.1+cu118
+Date: 2026-06-19
