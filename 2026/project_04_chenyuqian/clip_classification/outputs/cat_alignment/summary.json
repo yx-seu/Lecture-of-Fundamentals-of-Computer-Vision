@@ -1,0 +1,137 @@
+{
+  "model_name": "openai/clip-vit-base-patch32",
+  "strict_zero_shot_controls": [
+    "model.eval() is set inside CLIPZeroShotClassifier",
+    "all encoder calls use torch.no_grad()",
+    "CIFAR-10 train split is not loaded",
+    "external cat directories are evaluation-only inputs"
+  ],
+  "feature_norm_checks": {
+    "image_min": 0.9999995827674866,
+    "image_max": 1.0000003576278687,
+    "cat_text": 1.0,
+    "fine_prompt_min": 0.9999999403953552,
+    "fine_prompt_max": 1.0000001192092896,
+    "misleading_prompt_min": 0.9999998807907104,
+    "misleading_prompt_max": 1.0
+  },
+  "semantic_neighborhood": {
+    "top_k_non_cat": 100,
+    "top_non_cat_counts": {
+      "dog": 46,
+      "deer": 13,
+      "horse": 2,
+      "bird": 14,
+      "frog": 25
+    },
+    "true_cat_recall_under_cifar_prompts": 0.859000027179718,
+    "cat_precision_under_cifar_prompts": 0.8275529742240906,
+    "total_cifar_test_images": 10000
+  },
+  "fine_grained_cat_prompts": [
+    {
+      "prompt": "a photo of a domestic cat.",
+      "mean_similarity_on_cifar_cat": 0.2653772234916687,
+      "std_similarity_on_cifar_cat": 0.01883760094642639,
+      "top1_count_on_cifar_cat": 866,
+      "top1_rate_on_cifar_cat": 0.866
+    },
+    {
+      "prompt": "a photo of a tabby cat.",
+      "mean_similarity_on_cifar_cat": 0.2509276568889618,
+      "std_similarity_on_cifar_cat": 0.01900404505431652,
+      "top1_count_on_cifar_cat": 25,
+      "top1_rate_on_cifar_cat": 0.025
+    },
+    {
+      "prompt": "a photo of a Persian cat.",
+      "mean_similarity_on_cifar_cat": 0.24414968490600586,
+      "std_similarity_on_cifar_cat": 0.01945090852677822,
+      "top1_count_on_cifar_cat": 50,
+      "top1_rate_on_cifar_cat": 0.05
+    },
+    {
+      "prompt": "a photo of a Siamese cat.",
+      "mean_similarity_on_cifar_cat": 0.24515727162361145,
+      "std_similarity_on_cifar_cat": 0.01959425024688244,
+      "top1_count_on_cifar_cat": 46,
+      "top1_rate_on_cifar_cat": 0.046
+    },
+    {
+      "prompt": "a photo of a kitten.",
+      "mean_similarity_on_cifar_cat": 0.23922665417194366,
+      "std_similarity_on_cifar_cat": 0.016260216012597084,
+      "top1_count_on_cifar_cat": 6,
+      "top1_rate_on_cifar_cat": 0.006
+    },
+    {
+      "prompt": "a photo of a wild cat.",
+      "mean_similarity_on_cifar_cat": 0.23445016145706177,
+      "std_similarity_on_cifar_cat": 0.015982452780008316,
+      "top1_count_on_cifar_cat": 7,
+      "top1_rate_on_cifar_cat": 0.007
+    }
+  ],
+  "misleading_prompts": [
+    {
+      "prompt": "a photo of a dog-like cat.",
+      "mean_similarity_on_cifar_cat": 0.24894511699676514,
+      "mean_delta_vs_plain_cat_prompt": -0.009345374070107937,
+      "fraction_higher_than_plain_cat_prompt": 0.06700000166893005
+    },
+    {
+      "prompt": "a photo of a toy cat.",
+      "mean_similarity_on_cifar_cat": 0.2512623071670532,
+      "mean_delta_vs_plain_cat_prompt": -0.007028173189610243,
+      "fraction_higher_than_plain_cat_prompt": 0.1509999930858612
+    },
+    {
+      "prompt": "a photo of a cartoon cat.",
+      "mean_similarity_on_cifar_cat": 0.2521533668041229,
+      "mean_delta_vs_plain_cat_prompt": -0.00613712053745985,
+      "fraction_higher_than_plain_cat_prompt": 0.17499999701976776
+    },
+    {
+      "prompt": "a photo of a cat in water.",
+      "mean_similarity_on_cifar_cat": 0.23645013570785522,
+      "mean_delta_vs_plain_cat_prompt": -0.02184034325182438,
+      "fraction_higher_than_plain_cat_prompt": 0.01600000075995922
+    },
+    {
+      "prompt": "a photo of a cat on a road.",
+      "mean_similarity_on_cifar_cat": 0.2306763082742691,
+      "mean_delta_vs_plain_cat_prompt": -0.027614187449216843,
+      "fraction_higher_than_plain_cat_prompt": 0.013000000268220901
+    },
+    {
+      "prompt": "not a cat.",
+      "mean_similarity_on_cifar_cat": 0.23013955354690552,
+      "mean_delta_vs_plain_cat_prompt": -0.028150947764515877,
+      "fraction_higher_than_plain_cat_prompt": 0.012000000104308128
+    }
+  ],
+  "custom_cats": {
+    "group": "custom_cats",
+    "image_dir": "data/custom_cats",
+    "status": "ok",
+    "image_count": 4,
+    "cifar_cat_top1_count": 4,
+    "cifar_cat_top1_rate": 1.0,
+    "fine_grained_prediction_counts": {
+      "a photo of a domestic cat.": 4
+    }
+  },
+  "imagenet_cats": {
+    "group": "imagenet_cats",
+    "image_dir": "data/imagenet_cats",
+    "status": "ok",
+    "image_count": 4,
+    "cifar_cat_top1_count": 4,
+    "cifar_cat_top1_rate": 1.0,
+    "fine_grained_prediction_counts": {
+      "a photo of a tabby cat.": 2,
+      "a photo of a Persian cat.": 1,
+      "a photo of a Siamese cat.": 1
+    }
+  }
+}

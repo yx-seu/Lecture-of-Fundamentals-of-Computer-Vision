@@ -1,0 +1,5 @@
+path,cifar_prediction,cat_rank_among_cifar10,cat_similarity,dog_similarity,cat_dog_margin,fine_grained_prediction,fine_grained_similarity
+data\custom_cats\domestic_cat_1.jpg,cat,1,0.288013,0.225125,0.062888,a photo of a domestic cat.,0.292861
+data\custom_cats\domestic_cat_2.jpg,cat,1,0.289531,0.230058,0.059474,a photo of a domestic cat.,0.315509
+data\custom_cats\domestic_cat_3.jpg,cat,1,0.278904,0.216562,0.062342,a photo of a domestic cat.,0.302338
+data\custom_cats\domestic_cat_4.jpg,cat,1,0.273889,0.220907,0.052981,a photo of a domestic cat.,0.261421

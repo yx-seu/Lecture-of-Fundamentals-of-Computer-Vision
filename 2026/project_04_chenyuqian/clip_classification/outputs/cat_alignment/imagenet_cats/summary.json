@@ -1,0 +1,13 @@
+{
+  "group": "imagenet_cats",
+  "image_dir": "data/imagenet_cats",
+  "status": "ok",
+  "image_count": 4,
+  "cifar_cat_top1_count": 4,
+  "cifar_cat_top1_rate": 1.0,
+  "fine_grained_prediction_counts": {
+    "a photo of a tabby cat.": 2,
+    "a photo of a Persian cat.": 1,
+    "a photo of a Siamese cat.": 1
+  }
+}

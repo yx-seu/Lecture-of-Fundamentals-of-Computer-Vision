@@ -1,0 +1,13 @@
+齐志：请了解CLIP Zero-shot image classification。 不用重训练，利用CLIP中的image encoder与language encoder，通过tensor 转化的latent空间中的向量匹配，做CIFAR10 测试集的分类任务。  
+
+题目建议：
+基于 CLIP 的 CIFAR-10 Zero-shot 图像分类实验
+
+任务目标：
+使用预训练好的 CLIP 模型完成 CIFAR-10 测试集分类，不允许重新训练模型。实验中需要利用：
+1.Image Encoder：将 CIFAR-10 图像编码成图像特征向量；
+2.Text / Language Encoder：将类别文本提示词编码成文本特征向量；
+3.共享 latent space：比较图像向量和文本向量的相似度；
+4.Zero-shot 分类：选择相似度最高的类别作为预测结果。
+
+CLIP 的核心思想是同时训练 image encoder 和 text encoder，使图像和文本可以映射到同一个表示空间中；OpenAI 官方介绍中也说明，CLIP 通过图像-文本对训练，并可用于 zero-shot 迁移

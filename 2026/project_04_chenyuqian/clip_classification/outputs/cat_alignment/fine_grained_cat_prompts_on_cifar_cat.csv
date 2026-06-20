@@ -1,0 +1,7 @@
+prompt,mean_similarity_on_cifar_cat,std_similarity_on_cifar_cat,top1_count_on_cifar_cat,top1_rate_on_cifar_cat
+a photo of a domestic cat.,0.2653772234916687,0.01883760094642639,866,0.866
+a photo of a tabby cat.,0.2509276568889618,0.01900404505431652,25,0.025
+a photo of a Persian cat.,0.24414968490600586,0.01945090852677822,50,0.05
+a photo of a Siamese cat.,0.24515727162361145,0.01959425024688244,46,0.046
+a photo of a kitten.,0.23922665417194366,0.016260216012597084,6,0.006
+a photo of a wild cat.,0.23445016145706177,0.015982452780008316,7,0.007
