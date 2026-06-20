@@ -1,0 +1,11 @@
+{
+  "samples": 3925,
+  "correct": 3280,
+  "top1": 83.56687898089172,
+  "mean_per_class": 83.64717364311218,
+  "dataset": "Imagenette-10",
+  "checkpoint": "outputs_v3\\vit_imagenette10_best.pt",
+  "model_file": "vit.py",
+  "device": "cuda",
+  "model_parameters": 4989194
+}
