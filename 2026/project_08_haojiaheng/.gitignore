@@ -1,0 +1,73 @@
+xsim.dir/
+*.wdb
+*.jou
+*.log
+*.pb
+vivado_*.backup.*
+xsim_*.backup.*
+xelab.*
+xvlog.*
+dfx_runtime.txt
+build_iverilog/
+build_xsim/
+build_synth_xck26/
+build_bd_*/
+build_system_*/
+build_vitis_2022_2*/
+/build_vitis_*.tcl
+clockInfo.txt
+.Xil/
+.ip_user_files/
+accelerator_systolic.code-workspace
+
+# Python caches and local environments
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.venv/
+venv/
+
+# Large model/checkpoint artifacts should stay outside this RTL repo.
+*.pt
+*.pth
+*.onnx
+*.weights
+
+# Generated golden dumps are curated manually. Keep bulk outputs outside the repo
+# or under these ignored scratch directories.
+rtl_golden/
+golden/generated/
+golden/tmp/
+golden/external/
+tools/golden/output/
+demo_output/
+
+# Personal editor/agent settings
+.vscode/
+.claude/
+*.code-workspace
+
+# Vivado/Vitis generated handoff files are ignored by default. Curated final
+# artifacts are kept explicitly under release/.
+*.xsa
+*.bit
+!release/**/*.xsa
+!release/**/*.bit
+
+# LaTeX generated files.
+*.aux
+*.toc
+*.out
+*.synctex.gz
+*.fdb_latexmk
+*.fls
+*.xdv
+*.bbl
+*.blg
+*.run.xml
+*.lof
+*.lot
+# The local LaTeX project is not part of the handoff repository. Only the
+# curated root-level Thesis.pdf is tracked.
+2022_Peking_University_Master_Thesis_Template_iofu728_pkuthss_/
