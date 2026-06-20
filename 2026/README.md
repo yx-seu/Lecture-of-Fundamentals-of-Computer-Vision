@@ -76,7 +76,7 @@ project_XX/
 ├── results/               # Output results
 │   ├── figures/           # Visualization
 │   └── tables/            # Visualization
-├── demos/                 # Demos presentation
+├── demos/                 # Inference Demo
 └── references.md          # Citation and attribution (if applicable)
 ```
 

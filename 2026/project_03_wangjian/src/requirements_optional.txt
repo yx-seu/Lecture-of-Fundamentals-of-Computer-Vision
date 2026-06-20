@@ -1,0 +1,4 @@
+# Optional dependencies for the full experiment.
+# Install these after the core environment works.
+labelme>=5.5.0
+pycocotools>=2.0.7
