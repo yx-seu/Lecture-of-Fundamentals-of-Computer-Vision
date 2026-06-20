@@ -1,0 +1,65 @@
+Dataset & Model Links
+========================
+
+Since this project is a generative model pipeline (not a classification/detection task),
+the "datasets" are the pretrained model weights and the test input examples.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+MODEL WEIGHTS (must be downloaded before running)
+
+1. Stable Diffusion 1.5
+   Link: https://huggingface.co/runwayml/stable-diffusion-v1-5
+   Size: ~4.3 GB (all components)
+   Directory: models/stable-diffusion-v1-5/
+
+2. ControlNet Models (6 total, ~1.4 GB each safetensors file)
+   - control_v11p_sd15_canny:
+     https://huggingface.co/lllyasviel/control_v11p_sd15_canny
+     Directory: models/control-canny/
+   - control_v11f1p_sd15_depth:
+     https://huggingface.co/lllyasviel/control_v11f1p_sd15_depth
+     Directory: models/control-depth/
+   - control_v11p_sd15_lineart:
+     https://huggingface.co/lllyasviel/control_v11p_sd15_lineart
+     Directory: models/control-lineart/
+   - control_v11p_sd15_scribble:
+     https://huggingface.co/lllyasviel/control_v11p_sd15_scribble
+     Directory: models/control-scribble/
+   - control_v11p_sd15_openpose:
+     https://huggingface.co/lllyasviel/control_v11p_sd15_openpose
+     Directory: models/control-openpose/
+   - control_v11p_sd15_lineart_anime:
+     https://huggingface.co/lllyasviel/control_v11p_sd15_lineart_anime
+     Directory: models/control-animelineart/
+
+3. DepthAnything V1
+   Link: https://huggingface.co/spaces/LiheYoung/Depth-Anything
+   Checkpoint: depth_anything_vits14.pth (24.8M params)
+   Directory: cv_preprocess/models/
+
+4. MediaPipe Task Files
+   - Pose Landmarker:
+     https://storage.googleapis.com/mediapipe-models/pose_landmarker/pose_landmarker_heavy/float16/latest/pose_landmarker_heavy.task
+     Directory: cv_preprocess/models/pose_landmarker_full.task
+   - Face Landmarker:
+     https://storage.googleapis.com/mediapipe-models/face_landmarker/face_landmarker/float16/latest/face_landmarker.task
+     Directory: cv_preprocess/models/face_landmarker.task
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+TEST EXAMPLES
+
+The following synthetic test images are included in data/test_examples/:
+
+1. test_lineart_input.png  - Simulated hand-drawn character lineart
+2. test_sketch_input.png   - Simulated architectural doodle/sketch
+3. test_oldphoto_input.png - Simulated vintage photo with noise/texture
+4. test_generic_input.png  - Generic circular pattern (all-purpose)
+
+Expected outputs for these test images can be found in results/figures/.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+NOTE: Model weights are NOT included in this repository due to size.
+Download them using the links above before running the pipeline.
