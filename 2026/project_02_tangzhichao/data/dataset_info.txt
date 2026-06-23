@@ -1,0 +1,59 @@
+Dataset: ImageNet-S50
+
+Official ImageNet page:
+https://www.image-net.org/
+
+ImageNet-S project page:
+https://github.com/LUSSeg/ImageNet-S
+
+Task used in this project:
+Multiclass semantic segmentation on ImageNet-style natural images.
+
+Why ImageNet-S:
+The original ImageNet classification dataset does not provide dense pixel-level semantic segmentation masks for ordinary classification images. ImageNet-S extends ImageNet categories with segmentation annotations, so it is suitable for this supervised segmentation assignment.
+
+Local dataset root:
+data/imagenet-s/ImageNetS50
+
+Expected folder structure:
+data/imagenet-s/ImageNetS50/
+|-- train-semi/
+|-- train-semi-segmentation/
+|-- validation/
+`-- validation-segmentation/
+
+Submission-friendly setup:
+- The full ImageNet-S dataset is not included in this repository.
+- Lightweight demo images are provided under data/test_examples.
+- Demo inference outputs are written to results/demo_inference.
+- Main training uses configs/imagenet_s_animals_10cls_trainval_holdout_ade.yaml.
+
+Dataset expansion (ours — 50-class model):
+------------------------------------------------------
+The original ImageNet-S50 train-semi split contains only 500 labeled images
+(10 per class). We expanded this to ~1,482 images using Model-guided SAM
+(Segment Anything Model) pseudo-labeling.
+
+Pipeline:
+  1. Our trained DINOv2 + ADBA-Head model predicts a coarse mask.
+  2. The mask is converted to a bounding box.
+  3. SAM (ViT-H) refines the box into a precise segmentation mask.
+  4. Quality filters: mask coverage 2%-75%, SAM stability > 0.88.
+  5. Results saved to data/imagenet-s/ImageNetS50/sam_pseudo/.
+
+Expanded pseudo-labels:
+  Download link: [TBD — will be provided]
+
+After extraction, place under:
+  data/imagenet-s/ImageNetS50/sam_pseudo/
+  ├── train-pseudo/
+  └── train-pseudo-segmentation/
+
+The combined training set (train-semi + sam_pseudo) yields ~29 images/class.
+
+Preprocessing:
+- Resize images to the configured input resolution.
+- Resize masks with nearest-neighbor interpolation.
+- Convert each class-specific foreground mask into a shared multiclass label map.
+- Normalize images with ImageNet mean and standard deviation.
+- Use background label 0 and foreground class labels 1..N.

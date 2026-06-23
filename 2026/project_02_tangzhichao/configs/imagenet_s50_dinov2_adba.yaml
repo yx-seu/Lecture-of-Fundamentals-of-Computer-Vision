@@ -1,0 +1,40 @@
+# DINOv2 + Multi-Head ADBA-Head — Full ImageNet-S50 (51 classes)
+# This is the full-scale experiment replacing the SegFormer baseline.
+
+experiment:
+  name: "imagenet_s50_dinov2_adba"
+  mode: "ours"                       # advanced (ADBA-Head) | baseline (bilinear head)
+  seed: 42
+
+data:
+  root: "data/imagenet-s/ImageNetS50"
+  img_size: 448                      # must be multiple of 14
+  num_classes: 51                    # 1 background + 50 ImageNet-S categories
+
+model:
+  backbone: "vit_base_patch14_reg4_dinov2"  # DINOv2 ViT-B/14 + 4 registers
+  pretrained: true
+  freeze_backbone: true              # freeze first 80% blocks
+  drop_path_rate: 0.1
+  num_heads: 12
+  embed_dim: 768
+  coarse_dim: 384
+  shallow_dim: 120
+
+training:
+  epochs: 40
+  batch_size: 20
+  num_workers: 2
+  lr_head: 1.0e-3
+  lr_backbone: 1.0e-4
+  weight_decay: 0.05
+  warmup_epochs: 3
+  label_smoothing: 0.1
+  amp: true
+
+loss:
+  bg_weight: 1.0                     # background class weight (1.0 = no downweighting)
+  edge_beta: 2.0                     # boundary pixel amplification (0 = no edge boost)
+
+# Stage 1: train on original 500 images, plain loss
+# Stage 2: resume with SAM-augmented 1482 images, edge_beta=2.5, lower lr

@@ -7,7 +7,7 @@
 
 This is a **public repository** for the Computer Vision course final project, containing 9 comprehensive sub-projects covering fundamental and advanced topics in computer vision.
 
-![Submission Deadline](images.png?raw=true)
+<mark>Submission Deadline:  June 19th, 2026</mark>
 
 ## 🎯 Project Goals
 
@@ -57,7 +57,7 @@ Each of the 9 sub-projects must include the following components:
    - <mark>Do not put all datasets into the repository.</mark>
 
 ### 4. **Demo** 
-   - <mark>**Provide a simple inference example in a Jupyter notebook that demonstrates and elaborates on the core functions of your project.**</mark>
+   - A brief video of training, inference, and evaluation on a dataset
 
 ## 📝 Sub-Project Structure Template
 
@@ -76,20 +76,21 @@ project_XX/
 ├── results/               # Output results
 │   ├── figures/           # Visualization
 │   └── tables/            # Visualization
-├── demos/                 # Inference Demo
+├── demos/                 # Demos presentation
 └── references.md          # Citation and attribution (if applicable)
 ```
 
-## ✅ Submission Score Checklist
+## ✅ Submission Checklist
 
-- [ ] Project README: Clear structure, complete installation & running instructions, rich examples (8 pts)
-- [ ] Code Quality: Well-organized, commented, modular, readable, efficiency-aware (12 pts)
-- [ ] Reproducibility: requirements.txt, dependencies installable, pretrained model correctly downloaded/loaded (10 pts)
-- [ ] Demo / Inference Script: Runs successfully, reasonable output, polished (20 pts, gate item)
-- [ ] Results + Progressive Visualizations: Progressive visualizations + in-depth analysis (15 pts)
-- [ ] Technical Quality & Depth: Method justification, implementation quality, understanding of key code, simple ablation/comparative experiments (20 pts)
-- [ ] Conclusion & Future Work: Genuine insights, thoughtful future work (10 pts)
-- [ ] Academic Integrity: Proper citation of third-party code (5 pts)
+- [ ] Project README completed with all required sections, including clear installation and running instructions.
+- [ ] Well-organized and commented source code.
+- [ ] All dependencies documented in `requirements.txt` and can be successfully installed.
+- [ ] Third-party code properly cited.
+- [ ] Dataset link provided and testing examples included.
+- [ ] Pre-trained model can be properly downloaded and loaded.
+- [ ] Demo / inference script runs successfully and produces reasonable output.
+- [ ] Results with progressive visualizations and charts.
+- [ ] Conclusion with insights and future work.
 
 ## 📊 Expected Deliverables Timeline
 
